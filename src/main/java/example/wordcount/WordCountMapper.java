@@ -15,6 +15,7 @@ public class WordCountMapper extends Mapper<LongWritable, Text,Text,LongWritable
 		String line = value.toString().toLowerCase();
 		String[] words = line.split(" ");
 		for (String word : words){
+			word = word.replaceAll("[\\p{Punct}]", "");
 			context.write(new Text(word), ONE);
 		}
 	}
